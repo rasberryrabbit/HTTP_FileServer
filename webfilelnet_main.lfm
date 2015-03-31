@@ -1,0 +1,122 @@
+object Form1: TForm1
+  Left = 255
+  Height = 362
+  Top = 117
+  Width = 418
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Simple Http'
+  ClientHeight = 362
+  ClientWidth = 418
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  Position = poDefaultPosOnly
+  LCLVersion = '1.5'
+  object Edit1: TEdit
+    Left = 53
+    Height = 23
+    Top = 8
+    Width = 56
+    TabOrder = 0
+    Text = '80'
+  end
+  object Button1: TButton
+    Left = 125
+    Height = 25
+    Top = 6
+    Width = 75
+    Caption = 'Restart'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object Label1: TLabel
+    Left = 16
+    Height = 12
+    Top = 14
+    Width = 22
+    Caption = 'Port'
+    ParentColor = False
+  end
+  object Panel1: TPanel
+    Left = 8
+    Height = 205
+    Top = 152
+    Width = 402
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BevelOuter = bvNone
+    Color = clScrollBar
+    ParentColor = False
+    TabOrder = 2
+  end
+  object DirectoryEdit1: TDirectoryEdit
+    Left = 16
+    Height = 23
+    Top = 40
+    Width = 370
+    DialogTitle = 'HTTP Root Directory'
+    ShowHidden = False
+    ButtonWidth = 23
+    NumGlyphs = 1
+    Anchors = [akTop, akLeft, akRight]
+    MaxLength = 0
+    TabOrder = 3
+  end
+  object GroupBox1: TGroupBox
+    Left = 8
+    Height = 48
+    Top = 96
+    Width = 402
+    Anchors = [akTop, akLeft, akRight]
+    Caption = 'Auth Info'
+    ClientHeight = 31
+    ClientWidth = 398
+    TabOrder = 4
+    object EditUser: TEdit
+      Left = 62
+      Height = 23
+      Top = 0
+      Width = 120
+      TabOrder = 0
+      Text = 'root'
+    end
+    object EditPass: TEdit
+      Left = 254
+      Height = 23
+      Top = 0
+      Width = 136
+      TabOrder = 1
+      Text = 'root'
+    end
+    object Label2: TLabel
+      Left = 16
+      Height = 12
+      Top = 6
+      Width = 38
+      Caption = 'User : '
+      ParentColor = False
+    end
+    object Label3: TLabel
+      Left = 206
+      Height = 12
+      Top = 6
+      Width = 41
+      Caption = 'Pass : '
+      ParentColor = False
+    end
+  end
+  object CheckBoxAuth: TCheckBox
+    Left = 16
+    Height = 19
+    Top = 72
+    Width = 161
+    Caption = 'Auth Mode (Need Restart)'
+    TabOrder = 5
+  end
+  object TimerStart: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = TimerStartTimer
+    left = 296
+    top = 16
+  end
+end

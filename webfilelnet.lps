@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Release"/>
+    <Units Count="43">
+      <Unit0>
+        <Filename Value="webfilelnet.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="17" Y="18"/>
+        <UsageCount Value="173"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="webfilelnet_main.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="webfilelnet_main"/>
+        <TopLine Value="185"/>
+        <CursorPos X="36" Y="201"/>
+        <UsageCount Value="173"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="ufilehandler.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uFileHandler"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="931"/>
+        <CursorPos X="6" Y="954"/>
+        <UsageCount Value="126"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="C:\development\extras\lnet\lib\lhttp.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="264"/>
+        <CursorPos X="30" Y="272"/>
+        <UsageCount Value="11"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="C:\development\extras\lnet\lib\lnet.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="506"/>
+        <CursorPos X="3" Y="510"/>
+        <UsageCount Value="10"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="C:\development\extras\lnet\lib\lwebserver.pp"/>
+        <TopLine Value="1229"/>
+        <CursorPos X="3" Y="638"/>
+        <UsageCount Value="8"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="C:\development\extras\lnet\lib\levents.pp"/>
+        <TopLine Value="222"/>
+        <CursorPos X="3" Y="237"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="C:\development\extras\lnet\lib\lhttputil.pp"/>
+        <TopLine Value="39"/>
+        <CursorPos X="12" Y="54"/>
+        <UsageCount Value="10"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="C:\development\extras\lnet\lib\lmimetypes.pp"/>
+        <TopLine Value="23"/>
+        <CursorPos X="13" Y="38"/>
+        <UsageCount Value="3"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="C:\development\extras\lnet\lib\lstrbuffer.pp"/>
+        <TopLine Value="47"/>
+        <CursorPos X="3" Y="49"/>
+        <UsageCount Value="9"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="C:\development\extras\lnet\lazaruspackage\lclwineventer.inc"/>
+        <TopLine Value="28"/>
+        <CursorPos Y="48"/>
+        <UsageCount Value="8"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="C:\development\lazarus\lcl\interfaces\win32\win32callback.inc"/>
+        <TopLine Value="2244"/>
+        <CursorPos Y="2258"/>
+        <UsageCount Value="10"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="TextKMP.pas"/>
+        <TopLine Value="339"/>
+        <UsageCount Value="9"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="C:\development\fpc\rtl\objpas\classes\classesh.inc"/>
+        <TopLine Value="319"/>
+        <CursorPos X="15" Y="333"/>
+        <UsageCount Value="5"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="C:\development\extras\lnet\lib\lnetssl.pp"/>
+        <TopLine Value="15"/>
+        <CursorPos X="25" Y="19"/>
+        <UsageCount Value="8"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="C:\development\fpc\rtl\objpas\sysutils\finah.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="13"/>
+        <CursorPos X="10" Y="27"/>
+        <UsageCount Value="10"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="C:\development\fpc\rtl\objpas\sysutils\fina.inc"/>
+        <TopLine Value="334"/>
+        <CursorPos X="3" Y="303"/>
+        <UsageCount Value="3"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="C:\development\fpc\rtl\inc\systemh.inc"/>
+        <TopLine Value="1094"/>
+        <CursorPos X="14" Y="1107"/>
+        <UsageCount Value="6"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="C:\development\fpc\rtl\objpas\sysutils\filutilh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="110"/>
+        <CursorPos X="10" Y="124"/>
+        <UsageCount Value="10"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="C:\development\fpc\rtl\win\sysutils.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="363"/>
+        <CursorPos X="3" Y="385"/>
+        <UsageCount Value="10"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="C:\development\fpc\rtl\inc\ustringh.inc"/>
+        <UsageCount Value="5"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="C:\development\fpc\rtl\inc\astrings.inc"/>
+        <TopLine Value="1370"/>
+        <UsageCount Value="5"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="loglistfpc.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="303"/>
+        <CursorPos X="12" Y="317"/>
+        <UsageCount Value="10"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="C:\development\fpc\rtl\inc\file.inc"/>
+        <TopLine Value="282"/>
+        <CursorPos X="3" Y="287"/>
+        <UsageCount Value="6"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="C:\development\fpc\rtl\objpas\sysutils\sysutilh.inc"/>
+        <TopLine Value="288"/>
+        <CursorPos X="13" Y="303"/>
+        <UsageCount Value="7"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="C:\development\fpc\rtl\objpas\sysutils\sysutils.inc"/>
+        <TopLine Value="162"/>
+        <CursorPos X="9" Y="175"/>
+        <UsageCount Value="7"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="C:\development\fpc\rtl\objpas\sysutils\syspchh.inc"/>
+        <TopLine Value="15"/>
+        <CursorPos X="10" Y="33"/>
+        <UsageCount Value="7"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="C:\development\lazarus\components\lazutils\fileutil.pas"/>
+        <TopLine Value="67"/>
+        <UsageCount Value="9"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="C:\development\fpc\packages\fcl-base\src\base64.pp"/>
+        <TopLine Value="76"/>
+        <UsageCount Value="9"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="C:\development\extras\lnet\lazaruspackage\lnetcomponents.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="148"/>
+        <CursorPos X="38" Y="153"/>
+        <UsageCount Value="10"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="C:\development\lazarus\packager\registration\fcllaz.pas"/>
+        <UsageCount Value="10"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="C:\development\lazarus\lcl\interfaces\win32\win32int.pp"/>
+        <TopLine Value="21"/>
+        <CursorPos X="46" Y="22"/>
+        <UsageCount Value="10"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="C:\development\fpc\rtl\inc\objpash.inc"/>
+        <TopLine Value="185"/>
+        <CursorPos X="23" Y="193"/>
+        <UsageCount Value="10"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="..\..\development\lazarus\lcl\include\control.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="3242"/>
+        <CursorPos Y="3263"/>
+        <UsageCount Value="10"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="..\..\development\extras\lnet\lib\lnet.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="358"/>
+        <CursorPos X="14" Y="392"/>
+        <UsageCount Value="10"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="..\..\development\extras\lnet\lazaruspackage\lnetcomponents.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="151"/>
+        <CursorPos X="18" Y="164"/>
+        <UsageCount Value="10"/>
+      </Unit35>
+      <Unit36>
+        <Filename Value="..\..\development\extras\lnet\lib\lcommon.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="510"/>
+        <CursorPos X="3" Y="515"/>
+        <UsageCount Value="10"/>
+      </Unit36>
+      <Unit37>
+        <Filename Value="..\..\development\extras\lnet\lib\lhttp.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="262"/>
+        <CursorPos X="31" Y="272"/>
+        <UsageCount Value="10"/>
+      </Unit37>
+      <Unit38>
+        <Filename Value="..\..\development\fpc\rtl\objpas\sysutils\filutilh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="75"/>
+        <CursorPos X="3" Y="88"/>
+        <UsageCount Value="10"/>
+      </Unit38>
+      <Unit39>
+        <Filename Value="..\..\development\fpc\rtl\objpas\sysutils\sysutilh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="318"/>
+        <CursorPos X="3" Y="263"/>
+        <UsageCount Value="10"/>
+      </Unit39>
+      <Unit40>
+        <Filename Value="..\..\development\fpc\rtl\objpas\sysutils\diskh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="3"/>
+        <CursorPos X="10" Y="21"/>
+        <UsageCount Value="10"/>
+      </Unit40>
+      <Unit41>
+        <Filename Value="C:\development\fpc\rtl\objpas\sysutils\filutil.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="252"/>
+        <CursorPos X="17" Y="254"/>
+        <UsageCount Value="10"/>
+      </Unit41>
+      <Unit42>
+        <Filename Value="C:\development\fpc\packages\rtl-extra\src\inc\socketsh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="149"/>
+        <CursorPos X="11" Y="163"/>
+        <UsageCount Value="10"/>
+      </Unit42>
+    </Units>
+    <JumpHistory Count="27" HistoryIndex="26">
+      <Position1>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="512" Column="7" TopLine="488"/>
+      </Position1>
+      <Position2>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="534" Column="7" TopLine="510"/>
+      </Position2>
+      <Position3>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="542" Column="7" TopLine="518"/>
+      </Position3>
+      <Position4>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="711" Column="23" TopLine="694"/>
+      </Position4>
+      <Position5>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="712" Column="15" TopLine="694"/>
+      </Position5>
+      <Position6>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="67" Column="11" TopLine="53"/>
+      </Position6>
+      <Position7>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="373" Column="9" TopLine="350"/>
+      </Position7>
+      <Position8>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="374" Column="18" TopLine="351"/>
+      </Position8>
+      <Position9>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="375" Column="12" TopLine="352"/>
+      </Position9>
+      <Position10>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="378" Column="27" TopLine="355"/>
+      </Position10>
+      <Position11>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="389" Column="23" TopLine="366"/>
+      </Position11>
+      <Position12>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="422" Column="12" TopLine="399"/>
+      </Position12>
+      <Position13>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="423" Column="25" TopLine="400"/>
+      </Position13>
+      <Position14>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="511" Column="7" TopLine="487"/>
+      </Position14>
+      <Position15>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="512" Column="7" TopLine="488"/>
+      </Position15>
+      <Position16>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="534" Column="7" TopLine="510"/>
+      </Position16>
+      <Position17>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="542" Column="7" TopLine="518"/>
+      </Position17>
+      <Position18>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="699" Column="16" TopLine="685"/>
+      </Position18>
+      <Position19>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="61" Column="33" TopLine="46"/>
+      </Position19>
+      <Position20>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="132" Column="48" TopLine="118"/>
+      </Position20>
+      <Position21>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="104" Column="11" TopLine="94"/>
+      </Position21>
+      <Position22>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="257" Column="37" TopLine="235"/>
+      </Position22>
+      <Position23>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="51" Column="60" TopLine="40"/>
+      </Position23>
+      <Position24>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="83" Column="22" TopLine="60"/>
+      </Position24>
+      <Position25>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="85" Column="26" TopLine="71"/>
+      </Position25>
+      <Position26>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="87" Column="10" TopLine="81"/>
+      </Position26>
+      <Position27>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="137" TopLine="118"/>
+      </Position27>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>

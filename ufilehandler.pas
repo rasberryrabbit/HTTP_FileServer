@@ -34,13 +34,14 @@ type
   TBigFileOutput=class(TBufferOutput)
     private
       FFileStream:TFileStream;
+      FStartPos:Int64;
+      FEndPos:Int64;
 
       function Getsize:int64;
+      procedure SetStartPos(p:int64);
     protected
       function FillBuffer: TWriteBlockStatus; override;
     public
-      StartPos:Int64;
-      EndPos:Int64;
 
       function Open(const AFilename:string):Boolean;
 
@@ -48,6 +49,8 @@ type
       destructor Destroy; override;
 
       property Size:int64 read GetSize;
+      property StartPos:int64 read FStartPos write SetStartPos;
+      property EndPos:int64 read FEndPos write FEndPos;
   end;
 
 { TBigStreamOutput }
@@ -192,6 +195,13 @@ begin
       Result:=0;
 end;
 
+procedure TBigFileOutput.SetStartPos(p: int64);
+begin
+  if (FFileStream<>nil) and (p>0) then
+    FFileStream.Position:=p;
+  FStartPos:=p;
+end;
+
 function TBigFileOutput.FillBuffer: TWriteBlockStatus;
 var
   lRead, RAmount: integer;
@@ -222,6 +232,8 @@ begin
   Result:=False;
   try
     FFileStream:=TFileStream.Create(AFilename,fmOpenRead or fmShareDenyWrite);
+    if FStartPos>0 then
+      FFileStream.Position:=FStartPos;
     Result:=True;
   except
     on e:Exception do begin
@@ -236,8 +248,8 @@ constructor TBigFileOutput.Create(ASocket: TLHTTPSocket);
 begin
   inherited;
   FFileStream:=nil;
-  StartPos:=0;
-  EndPos:=0;
+  FStartPos:=0;
+  FEndPos:=0;
 end;
 
 destructor TBigFileOutput.Destroy;
@@ -246,6 +258,7 @@ begin
     FreeAndNil(FFileStream);
   inherited Destroy;
 end;
+
 
 { TBigStreamOutput }
 

@@ -2,15 +2,15 @@
 <CONFIG>
   <ProjectSession>
     <PathDelim Value="\"/>
-    <Version Value="9"/>
-    <BuildModes Active="Release"/>
-    <Units Count="43">
+    <Version Value="11"/>
+    <BuildModes Active="Default"/>
+    <Units Count="50">
       <Unit0>
         <Filename Value="webfilelnet.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="6"/>
-        <UsageCount Value="179"/>
+        <UsageCount Value="184"/>
       </Unit0>
       <Unit1>
         <Filename Value="webfilelnet_main.pas"/>
@@ -18,7 +18,10 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="179"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="239"/>
+        <CursorPos X="22" Y="177"/>
+        <UsageCount Value="184"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -26,11 +29,9 @@
         <Filename Value="ufilehandler.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uFileHandler"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="917"/>
-        <CursorPos X="6" Y="928"/>
-        <UsageCount Value="132"/>
+        <TopLine Value="157"/>
+        <UsageCount Value="137"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -96,9 +97,10 @@
       </Unit12>
       <Unit13>
         <Filename Value="C:\development\fpc\rtl\objpas\classes\classesh.inc"/>
-        <TopLine Value="319"/>
-        <CursorPos X="15" Y="333"/>
-        <UsageCount Value="5"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="949"/>
+        <CursorPos X="18" Y="969"/>
+        <UsageCount Value="10"/>
       </Unit13>
       <Unit14>
         <Filename Value="C:\development\extras\lnet\lib\lnetssl.pp"/>
@@ -109,8 +111,8 @@
       <Unit15>
         <Filename Value="C:\development\fpc\rtl\objpas\sysutils\finah.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="13"/>
-        <CursorPos X="10" Y="27"/>
+        <TopLine Value="11"/>
+        <CursorPos X="11" Y="40"/>
         <UsageCount Value="10"/>
       </Unit15>
       <Unit16>
@@ -128,8 +130,8 @@
       <Unit18>
         <Filename Value="C:\development\fpc\rtl\objpas\sysutils\filutilh.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="110"/>
-        <CursorPos X="10" Y="124"/>
+        <TopLine Value="154"/>
+        <CursorPos X="10" Y="138"/>
         <UsageCount Value="10"/>
       </Unit18>
       <Unit19>
@@ -181,8 +183,11 @@
       </Unit26>
       <Unit27>
         <Filename Value="C:\development\lazarus\components\lazutils\fileutil.pas"/>
-        <TopLine Value="67"/>
-        <UsageCount Value="9"/>
+        <UnitName Value="FileUtil"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="48"/>
+        <CursorPos X="14" Y="61"/>
+        <UsageCount Value="10"/>
       </Unit27>
       <Unit28>
         <Filename Value="C:\development\fpc\packages\fcl-base\src\base64.pp"/>
@@ -272,8 +277,8 @@
       <Unit41>
         <Filename Value="C:\development\fpc\rtl\objpas\sysutils\filutil.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="252"/>
-        <CursorPos X="17" Y="254"/>
+        <TopLine Value="521"/>
+        <CursorPos X="3" Y="523"/>
         <UsageCount Value="10"/>
       </Unit41>
       <Unit42>
@@ -283,124 +288,179 @@
         <CursorPos X="11" Y="163"/>
         <UsageCount Value="10"/>
       </Unit42>
+      <Unit43>
+        <Filename Value="C:\development\fpc\rtl\objpas\objpas.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="214"/>
+        <CursorPos X="33" Y="135"/>
+        <UsageCount Value="10"/>
+      </Unit43>
+      <Unit44>
+        <Filename Value="C:\development\fpc\rtl\objpas\classes\streams.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="551"/>
+        <CursorPos X="3" Y="557"/>
+        <UsageCount Value="10"/>
+      </Unit44>
+      <Unit45>
+        <Filename Value="C:\development\lazarus\components\lazutils\lazutf8classes.pas"/>
+        <UnitName Value="LazUTF8Classes"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="28"/>
+        <UsageCount Value="10"/>
+      </Unit45>
+      <Unit46>
+        <Filename Value="C:\development\lazarus\components\lazutils\lazutf8sysutils.pas"/>
+        <UnitName Value="LazUTF8SysUtils"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="122"/>
+        <UsageCount Value="10"/>
+      </Unit46>
+      <Unit47>
+        <Filename Value="C:\development\lazarus\components\lazutils\lazutf8.pas"/>
+        <UnitName Value="LazUTF8"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="136"/>
+        <UsageCount Value="10"/>
+      </Unit47>
+      <Unit48>
+        <Filename Value="C:\development\lazarus\components\lazutils\winlazutf8.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="142"/>
+        <UsageCount Value="10"/>
+      </Unit48>
+      <Unit49>
+        <Filename Value="C:\development\lazarus\components\lazutils\lazutils.pas"/>
+        <UnitName Value="LazUtils"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit49>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="248" TopLine="228"/>
+        <Caret Line="519" Column="48" TopLine="503"/>
       </Position1>
       <Position2>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="249" TopLine="228"/>
+        <Caret Line="679" Column="17" TopLine="665"/>
       </Position2>
       <Position3>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="247" TopLine="228"/>
+        <Caret Line="791" Column="63" TopLine="775"/>
       </Position3>
       <Position4>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="34" Column="10" TopLine="28"/>
+        <Caret Line="901" Column="74" TopLine="908"/>
       </Position4>
       <Position5>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="185" Column="17" TopLine="157"/>
+        <Caret Line="791" Column="63" TopLine="775"/>
       </Position5>
       <Position6>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="187" Column="24" TopLine="159"/>
+        <Caret Line="679" Column="34" TopLine="664"/>
       </Position6>
       <Position7>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="195" Column="24" TopLine="167"/>
+        <Caret Line="519" Column="48" TopLine="503"/>
       </Position7>
       <Position8>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="220" Column="24" TopLine="201"/>
+        <Caret Line="500" Column="48" TopLine="490"/>
       </Position8>
       <Position9>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="235" Column="27" TopLine="216"/>
+        <Caret Line="678" Column="13" TopLine="666"/>
       </Position9>
       <Position10>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="243" Column="26" TopLine="222"/>
+        <Caret Line="601" Column="8" TopLine="590"/>
       </Position10>
       <Position11>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="577" Column="25" TopLine="558"/>
+        <Caret Line="709" TopLine="684"/>
       </Position11>
       <Position12>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="773" Column="28" TopLine="755"/>
+        <Caret Line="601" TopLine="584"/>
       </Position12>
       <Position13>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="243" Column="17" TopLine="230"/>
+        <Caret Line="602" Column="10" TopLine="584"/>
       </Position13>
       <Position14>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="577" Column="25" TopLine="549"/>
+        <Caret Line="710" TopLine="694"/>
       </Position14>
       <Position15>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="243" Column="16" TopLine="226"/>
+        <Caret Line="711" TopLine="694"/>
       </Position15>
       <Position16>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="577" Column="25" TopLine="555"/>
+        <Caret Line="763" TopLine="736"/>
       </Position16>
       <Position17>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="728" Column="44" TopLine="713"/>
+        <Caret Line="601" TopLine="584"/>
       </Position17>
       <Position18>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="578" Column="24" TopLine="566"/>
+        <Caret Line="602" TopLine="584"/>
       </Position18>
       <Position19>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="729" Column="22" TopLine="717"/>
+        <Caret Line="603" TopLine="584"/>
       </Position19>
       <Position20>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="733" TopLine="717"/>
+        <Caret Line="602" Column="4" TopLine="587"/>
       </Position20>
       <Position21>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="736" Column="19" TopLine="720"/>
+        <Caret Line="763" TopLine="747"/>
       </Position21>
       <Position22>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="743" Column="16" TopLine="727"/>
+        <Caret Line="601" TopLine="584"/>
       </Position22>
       <Position23>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="577" Column="11" TopLine="564"/>
+        <Caret Line="602" TopLine="584"/>
       </Position23>
       <Position24>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="41" Column="20" TopLine="31"/>
+        <Caret Line="603" TopLine="584"/>
       </Position24>
       <Position25>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="201" Column="16" TopLine="182"/>
+        <Caret Line="604" TopLine="584"/>
       </Position25>
       <Position26>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="52" Column="28" TopLine="34"/>
+        <Caret Line="605" TopLine="584"/>
       </Position26>
       <Position27>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="271" Column="42" TopLine="257"/>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="765" TopLine="749"/>
       </Position27>
       <Position28>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="733" Column="23" TopLine="719"/>
+        <Caret Line="763" TopLine="749"/>
       </Position28>
       <Position29>
         <Filename Value="ufilehandler.pas"/>
-        <Caret Line="49" Column="36" TopLine="30"/>
+        <Caret Line="974" Column="58" TopLine="963"/>
       </Position29>
+      <Position30>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret TopLine="157"/>
+      </Position30>
     </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode="default"/>
+    </RunParams>
   </ProjectSession>
 </CONFIG>

@@ -162,19 +162,19 @@ begin
   c:=TBigFileURIHandler.Create;
   c.Methods:=[hmHead, hmGet, hmPost];
 
-  sdir:=Utf8ToAnsi(DirectoryEdit1.Directory);
+  sdir:=pchar(DirectoryEdit1.Directory);
   if sdir<>'' then
     if sdir[Length(sdir)]<>PathDelim then
       sdir:=sdir+PathDelim;
-  c.DocRoot:=sdir;
+  c.DocRoot:=UTF8Decode(sdir);
 
   // c.UploadLimit:=40*1024*1024;
   c.UploadLimit:=1024*1024*1024;
 
   c.AuthEnable:=CheckBoxAuth.Checked;
   if c.AuthEnable then begin
-    c.AuthUser:=Utf8ToAnsi(EditUser.Text);
-    c.AuthPass:=Utf8ToAnsi(EditPass.Text);
+    c.AuthUser:=pchar(EditUser.Text);
+    c.AuthPass:=pchar(EditPass.Text);
   end;
 
   MyHttpServer.RegisterHandler(c);

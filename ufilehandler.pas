@@ -25,7 +25,8 @@ unit uFileHandler;
 interface
 
 uses
-  sysutils, Classes, lNetComponents, lhttp, lwebserver, TextKMP, Sockets;
+  sysutils, Classes, lNetComponents, lhttp, lwebserver, TextKMP, Sockets,
+  LazUTF8Classes;
 
 type
 
@@ -33,7 +34,7 @@ type
 
   TBigFileOutput=class(TBufferOutput)
     private
-      FFileStream:TFileStream;
+      FFileStream:TFileStreamUTF8;
       FStartPos:Int64;
       FEndPos:Int64;
 
@@ -43,7 +44,8 @@ type
       function FillBuffer: TWriteBlockStatus; override;
     public
 
-      function Open(const AFilename:string):Boolean;
+      function Open(const AFilename:unicodestring):Boolean;
+      function Open(const AFilename:string):Boolean; overload;
 
       constructor Create(ASocket: TLHTTPSocket);
       destructor Destroy; override;
@@ -69,11 +71,11 @@ type
       BSL,BEL:integer;
       FindText:TDWKMPScan;
       IncNext:Integer;
-      UploadFolder:string;
-      OutFile:TFileStream;
+      UploadFolder:UnicodeString;
+      OutFile:TFileStreamUTF8;
       InHeader:Boolean;
       bHeader:string;
-      bFilename,oFilename,tFilename:string;
+      bFilename,oFilename,tFilename:UnicodeString;
       bBuffer:PAnsiChar;
       bRemain:Integer;
 
@@ -83,8 +85,8 @@ type
       // multipart-handler
       function PostHandleInput(ABuffer: pchar; ASize: integer): integer;
 
-      function MakeTempFilename(filename: string): string; virtual;
-      function MakeNewFilename(filename: string): string; virtual;
+      function MakeTempFilename(filename: UnicodeString): UnicodeString; virtual;
+      function MakeNewFilename(filename: UnicodeString): UnicodeString; virtual;
 
       procedure SetBoundary(b:string);
       property OnHandleInput:TBigHandleInput read FOnHandleInput write FOnHandleInput;
@@ -103,8 +105,8 @@ type
     protected
       function HandleURI(ASocket: TLHTTPServerSocket): TOutputItem; override;
     public
-      DocRoot:string;
-      IndexFile:string;
+      DocRoot:UnicodeString;
+      IndexFile:UnicodeString;
 
       AuthEnable:Boolean;
       realm:string;
@@ -142,7 +144,7 @@ type
 
 implementation
 
-uses lMimeTypes,lHTTPUtil,FileUtil,lStrBuffer,base64;
+uses lMimeTypes,lHTTPUtil,FileUtil,lStrBuffer,base64,LazUTF8;
 
 resourcestring
   rsHtmlBodyPUpl = '<html><body><p>Uploaded</p><br/><a href="/%s">back</a></'
@@ -158,6 +160,7 @@ const
   {$else}
   allfiles='*.*';
   {$endif}
+  max_temp_count = 99999;
 
 { TBigFileLHTTPServerComponent }
 
@@ -229,19 +232,24 @@ end;
 
 function TBigFileOutput.Open(const AFilename: string): Boolean;
 begin
-  Result:=False;
-  try
-    FFileStream:=TFileStream.Create(AFilename,fmOpenRead or fmShareDenyWrite);
-    if FStartPos>0 then
-      FFileStream.Position:=FStartPos;
-    Result:=True;
-  except
-    on e:Exception do begin
-      if FFileStream<>nil then
-        FreeAndNil(FFileStream);
-      LogError(e.Message);
-    end;
-  end;
+  Result:=Open(UnicodeString(AFilename));
+end;
+
+function TBigFileOutput.Open(const AFilename: unicodestring): Boolean;
+begin
+ Result:=False;
+ try
+   FFileStream:=TFileStreamUTF8.Create(UTF8Encode(AFilename),fmOpenRead or fmShareDenyWrite);
+   if FStartPos>0 then
+     FFileStream.Position:=FStartPos;
+   Result:=True;
+ except
+   on e:Exception do begin
+     if FFileStream<>nil then
+       FreeAndNil(FFileStream);
+     LogError(e.Message);
+   end;
+ end;
 end;
 
 constructor TBigFileOutput.Create(ASocket: TLHTTPSocket);
@@ -312,7 +320,7 @@ var
         j:=i;
         while j<=Length(temp) do begin
           if temp[j]='"' then begin
-            bFilename:=Utf8ToAnsi(Copy(bHeader,i,j-i));
+            bFilename:=UTF8Decode(Copy(bHeader,i,j-i));
             break;
           end;
           Inc(j);
@@ -321,7 +329,7 @@ var
         j:=i;
         while j<=Length(temp) do begin
           if temp[j]<#32 then begin
-            bFilename:=Copy(bHeader,i,j-i);
+            bFilename:=UTF8Decode(Copy(bHeader,i,j-i));
             break;
           end;
           Inc(j);
@@ -372,7 +380,7 @@ begin
        if bFilename<>'' then begin
          oFilename:=bFilename;
          tFilename:=MakeTempFilename(oFilename);
-         OutFile:=TFileStream.Create(tFilename,fmCreate or fmOpenWrite or fmShareDenyWrite);
+         OutFile:=TFileStreamUTF8.Create(UTF8Encode(tFilename),fmCreate or fmOpenWrite or fmShareDenyWrite);
        end;
      except
        if OutFile<>nil then
@@ -424,7 +432,7 @@ begin
         if bFilename<>'' then begin
           oFilename:=bFilename;
           tFilename:=MakeTempFilename(oFilename);
-          OutFile:=TFileStream.Create(tFilename,fmCreate or fmOpenWrite or fmShareDenyWrite);
+          OutFile:=TFileStreamUTF8.Create(UTF8Encode(tFilename),fmCreate or fmOpenWrite or fmShareDenyWrite);
         end;
       except
         if OutFile<>nil then
@@ -477,36 +485,40 @@ begin
   end;
 end;
 
-function TBigStreamOutput.MakeTempFilename(filename: string): string;
+function TBigStreamOutput.MakeTempFilename(filename: UnicodeString
+  ): UnicodeString;
 var
   i:integer;
-  nfile,ext:string;
+  nfile,ext,temp:string;
 begin
   Result:=UploadFolder+filename+'.tmp';
-  nfile:=ExtractFileNameWithoutExt(filename);
-  ext:=ExtractFileExt(filename);
+  temp:=pchar(UTF8Encode(filename));
+  nfile:=ExtractFileNameWithoutExt(temp);
+  ext:=ExtractFileExt(temp);
   i:=0;
   while FileExists(Result) do begin
-    Result:=UploadFolder+nfile+'('+IntToStr(i)+')'+ext+'.tmp';
+    Result:=UploadFolder+UTF8Decode(nfile)+'('+IntToStr(i)+')'+UTF8Decode(ext)+'.tmp';
     Inc(i);
-    if i>99999 then
+    if i>max_temp_count then
       break;
   end;
 end;
 
-function TBigStreamOutput.MakeNewFilename(filename: string): string;
+function TBigStreamOutput.MakeNewFilename(filename: UnicodeString
+  ): UnicodeString;
 var
   i:integer;
-  nfile,ext:string;
+  nfile,ext,temp:string;
 begin
   Result:=UploadFolder+filename;
-  nfile:=ExtractFileNameWithoutExt(filename);
-  ext:=ExtractFileExt(filename);
+  temp:=pchar(UTF8Encode(filename));
+  nfile:=ExtractFileNameWithoutExt(temp);
+  ext:=ExtractFileExt(temp);
   i:=0;
   while FileExists(Result) do begin
-    Result:=UploadFolder+nfile+'('+IntToStr(i)+')'+ext;
+    Result:=UploadFolder+UTF8Decode(nfile)+'('+IntToStr(i)+')'+UTF8Decode(ext);
     Inc(i);
-    if i>99999 then
+    if i>max_temp_count then
       break;
   end;
 end;
@@ -582,18 +594,29 @@ begin
   FAuthBase64:=EncodeStringBase64(User+':'+Pass);
 end;
 
+function FileSizeW(const AFileName:UnicodeString):Int64;
+var
+  xf : File;
+begin
+ AssignFile(xf,AFileName);
+ Reset(xf,1);
+ Result:=FileSize(xf);
+ Close(xf);
+end;
+
 function TBigFileURIHandler.HandleURI(ASocket: TLHTTPServerSocket): TOutputItem;
 const
   uploadaction='upload.action.htm';
   folderaction='folder=';
 var
   fstream:TBigFileOutput;
-  srec:TSearchRec;
-  outmsg:string;
-  uri,urlstr:string;
+  srec:TUnicodeSearchRec;
+  outmsg, temp, tempURi:string;
+  uri:UnicodeString;
+  urlstr:String;
   i,j:integer;
   contenttype:string;
-  urifile:string;
+  urifile:UnicodeString;
   contentlength:int64;
   dummy:TMemoryStream;
   existdir:Boolean;
@@ -657,13 +680,13 @@ var
 
 begin
   Result:=nil; // if you want process input data, must retuen TOutputItem and define Result.HandleInput
-  uri:=pchar(Utf8ToAnsi(HTTPDecode(ASocket.FRequestInfo.Argument)));
+  uri:=UTF8Decode(HTTPDecode(ASocket.FRequestInfo.Argument));
   DoDirSeparators(uri);
   if ASocket.FRequestInfo.RequestType=hmHead then begin
     // HEAD get file size only.
     ASocket.FResponseInfo.LastModified:=LocalTimeToGMT(Now);
     if FileExists(DocRoot+uri) then begin
-      lSize:=FileSize(DocRoot+uri);
+      lSize:=FileSizeW(DocRoot+uri);
       TLHTTPServerSocket(ASocket).SendMessage('HTTP/1.0 200 OK'+#13#10+'Accept-Ranges: bytes'+#13#10+
                                               Format('Content-Length: %d'+#13#10,[lSize])+#13#10);
       ASocket.Disconnect(True);
@@ -684,7 +707,6 @@ begin
         exit;
       end;
     end;
-
     existdir:=DirectoryExists(DocRoot+uri);
     // index file
     if existdir and (IndexFile<>'') then begin
@@ -703,8 +725,8 @@ begin
         // list directory
         if (uri<>'') and (uri[Length(uri)]<>PathDelim) then begin
           uri:=uri+PathDelim;
-          urlstr:=StringReplace(uri,PathDelim,'/',[rfReplaceAll]);
-          urlstr:=pchar(HTTPEncode(AnsiToUtf8(urlstr)));
+          urlstr:=StringReplace(pchar(UTF8Encode(uri)),PathDelim,'/',[rfReplaceAll]);
+          urlstr:=HTTPEncode(urlstr);
           urlstr:=StringReplace(urlstr,'%2F','/',[rfIgnoreCase,rfReplaceAll]);
         end;
         outmsg:='<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">'+
@@ -714,12 +736,13 @@ begin
         i:=FindFirst(DocRoot+uri+allfiles,faAnyFile,srec);
         if i{$ifdef WINDOWS}=0{$else}<>-1{$endif} then begin
           repeat
+            temp:=pchar(UTF8Encode(srec.Name));
             if (srec.Attr and faDirectory)<>faDirectory then begin
-              contenttype:=pchar(AnsiToUtf8(srec.Name));
+              contenttype:=temp;
               outmsg:=outmsg+Format('<br/><a href="/%s%s">%s</a>',[urlstr,HTTPEncode(contenttype),contenttype]);
             end else begin
-              if (srec.Name<>'.') and (srec.Name<>'..') then begin
-                contenttype:=pchar(AnsiToUtf8(srec.Name));
+              if (temp<>'.') and (temp<>'..') then begin
+                contenttype:=temp;
                 outmsg:=outmsg+Format('<br/><a href="/%s%s">%s/</a>',[urlstr,HTTPEncode(contenttype),contenttype]);
               end;
             end;
@@ -746,15 +769,15 @@ begin
           rangeparam:=ASocket.Parameters[hpRange];
           if rangeparam<>nil then begin
             // range
-            urifile:=GetRangeLow(rangeparam);
-            if urifile='' then begin
-              urifile:=GetRangeHigh(rangeparam);
-              fstream.StartPos:=lSize-StrToInt64Def(urifile,0);
+            temp:=GetRangeLow(rangeparam);
+            if temp='' then begin
+              temp:=GetRangeHigh(rangeparam);
+              fstream.StartPos:=lSize-StrToInt64Def(temp,0);
               if fstream.StartPos<0 then
                 fstream.StartPos:=lSize;
               fstream.EndPos:=lSize-1;
             end else begin
-              fstream.StartPos:=StrToInt64Def(urifile,0);
+              fstream.StartPos:=StrToInt64Def(temp,0);
               fstream.EndPos:=StrToInt64Def(GetRangeHigh(rangeparam),lSize-1);
             end;
             if (fstream.StartPos>fstream.EndPos) or (fstream.StartPos>=lSize)
@@ -778,8 +801,8 @@ begin
             if i<>-1 then begin
               ASocket.FResponseInfo.ContentType:=TStringObject(MimeList.Objects[i]).Str;
               // multimedia support
-              urifile:=Copy(ASocket.FResponseInfo.ContentType,1,5);
-              if (CompareText(urifile,'video')=0) or (CompareText(urifile,'audio')=0) then
+              temp:=Copy(ASocket.FResponseInfo.ContentType,1,5);
+              if (CompareText(temp,'video')=0) or (CompareText(temp,'audio')=0) then
                 ASocket.FResponseInfo.Status:=hsPartialContent;
             end;
             ASocket.StartResponse(fstream,True);
@@ -806,28 +829,29 @@ begin
     begin
       // folder creation
       // check upload action url
-      i:=Pos(uploadaction,uri);
+      tempURi:=pchar(UTF8Encode(uri));
+      i:=Pos(uploadaction,tempURi);
       if i>0 then begin
         // get parameter processing here
         // get create folder
-        urifile:=ASocket.FRequestInfo.QueryParams;
+        temp:=ASocket.FRequestInfo.QueryParams;
         i:=Pos(folderaction,ASocket.FRequestInfo.QueryParams);
         if i>0 then begin
           j:=i+length(folderaction);
           // get folder name from query
-          while j<=Length(urifile) do begin
-            if urifile[j]='&' then
+          while j<=Length(temp) do begin
+            if temp[j]='&' then
               break;
             Inc(j);
           end;
-          urifile:=Utf8ToAnsi(HTTPDecode(Copy(urifile,i+length(folderaction),j-i-length(folderaction))));
+          urifile:=UTF8Decode(HTTPDecode(Copy(temp,i+length(folderaction),j-i-length(folderaction))));
           // get folder name
-          i:=Pos(uploadaction,uri);
+          i:=Pos(uploadaction,tempURi);
           if i>0 then
-            urlstr:=Copy(uri,1,i-1)
+            urlstr:=Copy(tempURi,1,i-1)
             else
               urlstr:='';
-          urifile:=DocRoot+urlstr+urifile;
+          urifile:=DocRoot+UTF8Decode(urlstr)+urifile;
           if (i>0) and (not DirectoryExists(urifile)) then
             if not CreateDir(urifile) then
               i:=0;
@@ -835,7 +859,7 @@ begin
           if urlstr<>'' then
             Delete(urlstr,Length(urlstr),1);
           if urlstr<>'' then begin
-            urlstr:=HTTPEncode(AnsiToUtf8(StringReplace(urlstr,PathDelim,'/',[rfReplaceAll])));
+            urlstr:=HTTPEncode(StringReplace(urlstr,PathDelim,'/',[rfReplaceAll]));
             urlstr:=StringReplace(urlstr,'%2F','/',[rfReplaceAll,rfIgnoreCase]);
           end;
           // response
@@ -865,9 +889,10 @@ begin
     Result:=TBigStreamOutput.Create(ASocket,dummy,True);
     ASocket.FResponseInfo.ContentType:='text';
     // get upload folder
-    i:=Pos(uploadaction,uri);
+    tempURi:=pchar(UTF8Encode(uri));
+    i:=Pos(uploadaction,tempURi);
     if i>0 then
-      urlstr:=Copy(uri,1,i-1)
+      urlstr:=Copy(tempURi,1,i-1)
       else
         urlstr:='';
 
@@ -882,7 +907,7 @@ begin
           j:=Length(contenttype)+1;
         outmsg:=copy(contenttype,i,j-i);
         TBigStreamOutput(Result).SetBoundary(outmsg);
-        TBigStreamOutput(Result).UploadFolder:=DocRoot+urlstr;
+        TBigStreamOutput(Result).UploadFolder:=DocRoot+UTF8Decode(urlstr);
         if contentlength>UploadLimit then begin
             // disconnect when bigger
             ASocket.Disconnect(True);
@@ -895,7 +920,7 @@ begin
     if urlstr<>'' then
       Delete(urlstr,Length(urlstr),1);
     if urlstr<>'' then begin
-      urlstr:=HTTPEncode(AnsiToUtf8(StringReplace(urlstr,PathDelim,'/',[rfReplaceAll])));
+      urlstr:=HTTPEncode(StringReplace(urlstr,PathDelim,'/',[rfReplaceAll]));
       urlstr:=StringReplace(urlstr,'%2F','/',[rfReplaceAll,rfIgnoreCase]);
     end;
 

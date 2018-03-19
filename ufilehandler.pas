@@ -726,6 +726,9 @@ begin
         if (uri<>'') and (uri[Length(uri)]<>PathDelim) then begin
           uri:=uri+PathDelim;
           urlstr:=StringReplace(pchar(UTF8Encode(uri)),PathDelim,'/',[rfReplaceAll]);
+        end else
+          urlstr:=pchar(UTF8Encode(uri));
+        if urlstr<>'' then begin
           urlstr:=HTTPEncode(urlstr);
           urlstr:=StringReplace(urlstr,'%2F','/',[rfIgnoreCase,rfReplaceAll]);
         end;
@@ -784,10 +787,10 @@ begin
                 or (fstream.EndPos>=lSize) then
                   bOutStream:=False
                     else begin
-                  AppendString(ASocket.FHeaderOut.ExtraHeaders,Format('Content-Length: %d'+#13#10,[fstream.EndPos-fstream.StartPos+1]));
-                  AppendString(ASocket.FHeaderOut.ExtraHeaders,Format('Content-Range: bytes %d-%d/%d'+#13#10,[fstream.StartPos,fstream.EndPos,lSize]));
-                  AppendString(ASocket.FHeaderOut.ExtraHeaders,'Accept-Ranges: bytes'+#13#10);
-                  ASocket.FResponseInfo.Status:=hsPartialContent;
+                      AppendString(ASocket.FHeaderOut.ExtraHeaders,Format('Content-Length: %d'+#13#10,[fstream.EndPos-fstream.StartPos+1]));
+                      AppendString(ASocket.FHeaderOut.ExtraHeaders,Format('Content-Range: bytes %d-%d/%d'+#13#10,[fstream.StartPos,fstream.EndPos,lSize]));
+                      AppendString(ASocket.FHeaderOut.ExtraHeaders,'Accept-Ranges: bytes'+#13#10);
+                      ASocket.FResponseInfo.Status:=hsPartialContent;
                     end;
           end else begin
             // full
@@ -909,11 +912,11 @@ begin
         TBigStreamOutput(Result).SetBoundary(outmsg);
         TBigStreamOutput(Result).UploadFolder:=DocRoot+UTF8Decode(urlstr);
         if contentlength>UploadLimit then begin
-            // disconnect when bigger
-            ASocket.Disconnect(True);
-            TBigStreamOutput(Result).LogError(Format('%d Upload Limit',[UploadLimit]));
-          end else
-            TBigStreamOutput(Result).OnHandleInput:=@TBigStreamOutput(Result).PostHandleInput;
+          // disconnect when bigger
+          ASocket.Disconnect(True);
+          TBigStreamOutput(Result).LogError(Format('%d Upload Limit',[UploadLimit]));
+        end else
+          TBigStreamOutput(Result).OnHandleInput:=@TBigStreamOutput(Result).PostHandleInput;
       end;
     end;
     // response

@@ -144,7 +144,7 @@ type
 
 implementation
 
-uses lMimeTypes,lHTTPUtil,FileUtil,lStrBuffer,base64,LazUTF8;
+uses lMimeTypes,lHTTPUtil,FileUtil,lStrBuffer,base64,LazUTF8, LazFileUtils;
 
 resourcestring
   rsHtmlBodyPUpl = '<html><body><p>Uploaded</p><br/><a href="/%s">back</a></'

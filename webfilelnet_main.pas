@@ -26,6 +26,7 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Panel1: TPanel;
+    TimerUDP: TTimer;
     TimerStart: TTimer;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -34,6 +35,7 @@ type
     procedure LHTTPServerComponent1Accept(aSocket: TLSocket);
     procedure LHTTPServerComponent1Error(const msg: string; aSocket: TLSocket);
     procedure TimerStartTimer(Sender: TObject);
+    procedure TimerUDPTimer(Sender: TObject);
   private
     { private declarations }
   public
@@ -56,10 +58,14 @@ const
   DocRootIni='DocRoot.ini';
 
 var
-  loglist:TLogListFPC;
-  ExePath:string;
-  MyHttpServer:TBigFileLHTTPServerComponent;
-  IPBuf : array[0..255] of char;
+  loglist: TLogListFPC;
+  ExePath: string;
+  MyHttpServer: TBigFileLHTTPServerComponent;
+  IPBuf: array[0..255] of char;
+  ipudp: string;
+  msgbuf: string;
+  udpsock: longint;
+  udpaddr: sockaddr;
 
 { TForm1 }
 
@@ -116,6 +122,7 @@ begin
   loglist.Align:=alClient;
   loglist.Color:=clWhite;
   loglist.LineLimit:=1000;
+  udpsock:=fpsocket(AF_INET,SOCK_DGRAM,IPPROTO_UDP);
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
@@ -125,7 +132,9 @@ begin
     MyHttpServer.Free;
   loglist.Free;
   *)
+  TimerUDP.Enabled:=False;
   SaveDocPath;
+  CloseSocket(udpsock);
   Sleep(100);
 end;
 
@@ -139,6 +148,27 @@ procedure TForm1.TimerStartTimer(Sender: TObject);
 begin
   TimerStart.Enabled:=False;
   SetupMyHTTP;
+end;
+
+procedure TForm1.TimerUDPTimer(Sender: TObject);
+begin
+  if -1=fpsendto(udpsock,@msgbuf[1],length(msgbuf),0,@udpaddr,sizeof(udpaddr)) then
+    loglist.AddLog('* UDP error');
+end;
+
+function makebroadcastip(const s:string):string;
+var
+  l:integer;
+begin
+  Result:='255.255.255.255';
+  l:=Length(s);
+  while l>0 do begin
+    if s[l]='.' then
+     break;
+    Dec(l);
+  end;
+  if l>0 then
+    Result:=Copy(s,1,l)+'255';
 end;
 
 procedure TForm1.SetupMyHTTP;
@@ -198,6 +228,16 @@ begin
 
   //SaveDocPath;
   GetIPAddr(IPBuf,sizeof(IPBuf));
+  ipudp:=makebroadcastip(IPBuf);
+  //setup UDP
+  TimerUDP.Enabled:=False;
+  fillchar(udpaddr,sizeof(udpaddr),0);
+  udpaddr.sin_port:=htons(51000);
+  udpaddr.sin_family:=AF_INET;
+  udpaddr.sin_addr:=StrToNetAddr(ipudp);
+  msgbuf:=IPBuf+':'+IntToStr(MyHttpServer.Port)+'|WEBFILELNET'#13#10;
+  TimerUDP.Enabled:=True;
+
   loglist.AddLog(Format('* Address: %s:%d',[IPBuf,MyHttpServer.Port]));
 end;
 

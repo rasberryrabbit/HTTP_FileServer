@@ -66,6 +66,7 @@ var
   msgbuf: string;
   udpsock: longint;
   udpaddr: sockaddr;
+  nmask: string;
 
 { TForm1 }
 
@@ -159,16 +160,12 @@ end;
 function makebroadcastip(const s:string):string;
 var
   l:integer;
+  ip, mask : in_addr;
 begin
-  Result:='255.255.255.255';
-  l:=Length(s);
-  while l>0 do begin
-    if s[l]='.' then
-     break;
-    Dec(l);
-  end;
-  if l>0 then
-    Result:=Copy(s,1,l)+'255';
+  ip:=StrToHostAddr(s);
+  mask:=StrToHostAddr(nmask);
+  ip.s_addr:=ip.s_addr or (not mask.s_addr);
+  Result:=HostAddrToStr(ip);
 end;
 
 procedure TForm1.SetupMyHTTP;
@@ -263,6 +260,8 @@ begin
           chauth:='0';
       iFile.Write(chauth,1);
       iFile.Write(#13#10,2);
+      iFile.Write(nmask[1],Length(nmask));
+      iFile.Write(#13#10,2);
     finally
       iFile.Free;
     end;
@@ -314,6 +313,9 @@ begin
         if rets='' then
           rets:='0';
         CheckBoxAuth.Checked:=rets='1';
+        nmask:=ReadLine;
+        if nmask='' then
+          nmask:='255.255.255.0';
       finally
         iFile.Free;
       end;

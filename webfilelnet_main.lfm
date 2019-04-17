@@ -27,7 +27,7 @@ object Form1: TForm1
     Width = 75
     Caption = 'Restart'
     OnClick = Button1Click
-    TabOrder = 1
+    TabOrder = 2
   end
   object Label1: TLabel
     Left = 16
@@ -46,7 +46,7 @@ object Form1: TForm1
     BevelOuter = bvNone
     Color = clScrollBar
     ParentColor = False
-    TabOrder = 2
+    TabOrder = 3
   end
   object DirectoryEdit1: TDirectoryEdit
     Left = 16
@@ -59,7 +59,7 @@ object Form1: TForm1
     NumGlyphs = 1
     Anchors = [akTop, akLeft, akRight]
     MaxLength = 0
-    TabOrder = 3
+    TabOrder = 4
   end
   object GroupBox1: TGroupBox
     Left = 8
@@ -70,7 +70,7 @@ object Form1: TForm1
     Caption = 'Auth Info'
     ClientHeight = 31
     ClientWidth = 398
-    TabOrder = 4
+    TabOrder = 5
     object EditUser: TEdit
       Left = 62
       Height = 23
@@ -110,7 +110,20 @@ object Form1: TForm1
     Top = 72
     Width = 161
     Caption = 'Auth Mode (Need Restart)'
-    TabOrder = 5
+    TabOrder = 6
+  end
+  object MaskSub: TMaskEdit
+    Left = 218
+    Height = 23
+    Top = 8
+    Width = 134
+    CharCase = ecNormal
+    MaxLength = 15
+    TabOrder = 1
+    OnEditingDone = MaskSubEditingDone
+    EditMask = '!099.099.099.099;1; '
+    Text = '   .   .   .   '
+    SpaceChar = ' '
   end
   object TimerStart: TTimer
     Enabled = False

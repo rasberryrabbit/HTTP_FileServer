@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, EditBtn, lNetComponents, lNet, lhttp, lwebserver;
+  ExtCtrls, EditBtn, MaskEdit, lNetComponents, lNet, lhttp, lwebserver;
 
 type
 
@@ -25,6 +25,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    MaskSub: TMaskEdit;
     Panel1: TPanel;
     TimerUDP: TTimer;
     TimerStart: TTimer;
@@ -34,6 +35,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure LHTTPServerComponent1Accept(aSocket: TLSocket);
     procedure LHTTPServerComponent1Error(const msg: string; aSocket: TLSocket);
+    procedure MaskSubEditingDone(Sender: TObject);
     procedure TimerStartTimer(Sender: TObject);
     procedure TimerUDPTimer(Sender: TObject);
   private
@@ -66,7 +68,7 @@ var
   msgbuf: string;
   udpsock: longint;
   udpaddr: sockaddr;
-  nmask: string;
+  nmask, nmask_tmp: string;
 
 { TForm1 }
 
@@ -76,6 +78,8 @@ var
 begin
   ExePath:=ExtractFilePath(ParamStr(0));
   LoadDocPath;
+
+  MaskSub.Text:=nmask;
 
   // must exist for filehandler
   if FileExists(ExtractFilePath(ParamStr(0))+'mime.types') then
@@ -98,6 +102,22 @@ begin
   //
 
   TimerStart.Enabled:=True;
+end;
+
+procedure TForm1.MaskSubEditingDone(Sender: TObject);
+var
+  s, buf, temp: string;
+begin
+  buf:=MaskSub.Text;
+  s:=Copy(buf,1,3);
+  temp:=trim(s);
+  s:=Copy(buf,5,3);
+  temp:=Temp+'.'+trim(s);
+  s:=Copy(buf,9,3);
+  temp:=temp+'.'+trim(s);
+  s:=Copy(buf,13,3);
+  temp:=temp+'.'+trim(s);
+  nmask:=temp;
 end;
 
 procedure TForm1.LHTTPServerComponent1Accept(aSocket: TLSocket);

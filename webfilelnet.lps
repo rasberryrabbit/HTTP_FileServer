@@ -9,7 +9,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="6"/>
-        <UsageCount Value="188"/>
+        <UsageCount Value="193"/>
       </Unit>
       <Unit>
         <Filename Value="webfilelnet_main.pas"/>
@@ -18,9 +18,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="104"/>
-        <CursorPos X="60" Y="115"/>
-        <UsageCount Value="188"/>
+        <TopLine Value="29"/>
+        <CursorPos X="71" Y="54"/>
+        <UsageCount Value="193"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -28,10 +28,11 @@
         <Filename Value="ufilehandler.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uFileHandler"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="967"/>
-        <CursorPos X="40" Y="978"/>
-        <UsageCount Value="141"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="849"/>
+        <CursorPos X="24" Y="833"/>
+        <UsageCount Value="146"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\development\extras\lnet\lib\lhttp.pp"/>
@@ -371,87 +372,30 @@
         <CursorPos X="3" Y="335"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="C:\development\lazarus\lcl\lcltranslator.pas"/>
+        <UnitName Value="LCLTranslator"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="251"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\development\lazarus\lcl\defaulttranslator.pas"/>
+        <UnitName Value="DefaultTranslator"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="9" Y="15"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\development\lazarus\lcl\lresources.pp"/>
+        <UnitName Value="LResources"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="101"/>
+        <CursorPos X="5" Y="112"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="264" Column="22" TopLine="247"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="323" Column="25" TopLine="304"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="64" Column="22" TopLine="36"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="127" TopLine="99"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="168" Column="29" TopLine="144"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="163" Column="18" TopLine="150"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="168" Column="12" TopLine="150"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="273" Column="25" TopLine="249"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="44" Column="26" TopLine="28"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="317" TopLine="300"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="316" TopLine="300"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="280" TopLine="263"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="281" TopLine="263"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="283" TopLine="263"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="292" TopLine="264"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="317" TopLine="299"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="318" TopLine="299"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="327" TopLine="300"/>
-      </Position>
-      <Position>
-        <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="228" Column="20" TopLine="212"/>
-      </Position>
+    <JumpHistory HistoryIndex="27">
       <Position>
         <Filename Value="webfilelnet_main.pas"/>
         <Caret Line="160" Column="10" TopLine="143"/>
@@ -488,10 +432,94 @@
         <Filename Value="webfilelnet_main.pas"/>
         <Caret Line="169" TopLine="152"/>
       </Position>
+      <Position>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="216" Column="7" TopLine="201"/>
+      </Position>
+      <Position>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="108" Column="9" TopLine="91"/>
+      </Position>
+      <Position>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="688" Column="26" TopLine="661"/>
+      </Position>
+      <Position>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="689" Column="31" TopLine="662"/>
+      </Position>
+      <Position>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="710" Column="38" TopLine="683"/>
+      </Position>
+      <Position>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="717" Column="28" TopLine="690"/>
+      </Position>
+      <Position>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="723" Column="31" TopLine="696"/>
+      </Position>
+      <Position>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="739" Column="29" TopLine="712"/>
+      </Position>
+      <Position>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="765" Column="26" TopLine="738"/>
+      </Position>
+      <Position>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="769" Column="32" TopLine="742"/>
+      </Position>
+      <Position>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="857" Column="27" TopLine="830"/>
+      </Position>
+      <Position>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="913" Column="55" TopLine="886"/>
+      </Position>
+      <Position>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="108" Column="14" TopLine="91"/>
+      </Position>
+      <Position>
+        <Filename Value="ufilehandler.pas"/>
+        <Caret Line="889" Column="11" TopLine="867"/>
+      </Position>
+      <Position>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="60" Column="9" TopLine="46"/>
+      </Position>
+      <Position>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="55" Column="71" TopLine="41"/>
+      </Position>
+      <Position>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="54" Column="68" TopLine="40"/>
+      </Position>
+      <Position>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="358" Column="14" TopLine="330"/>
+      </Position>
+      <Position>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="54" Column="71" TopLine="29"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode="default"/>
     </RunParams>
+    <HistoryLists>
+      <List Name="LaunchingApplication" Type="File" Count="1">
+        <Item1 Value="C:\Windows\system32\cmd.exe /C ${TargetCmdLine}"/>
+      </List>
+      <List Name="CommandLineParameters" Count="1">
+        <Item1 Value="--lang ko"/>
+      </List>
+    </HistoryLists>
   </ProjectSession>
 </CONFIG>

@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 255
+  Left = 266
   Height = 362
-  Top = 117
+  Top = 135
   Width = 418
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Simple Http'
@@ -11,7 +11,7 @@ object Form1: TForm1
   OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poDefaultPosOnly
-  LCLVersion = '2.1.0.0'
+  LCLVersion = '2.3.0.0'
   object Edit1: TEdit
     Left = 53
     Height = 23
@@ -35,7 +35,6 @@ object Form1: TForm1
     Top = 14
     Width = 22
     Caption = 'Port'
-    ParentColor = False
   end
   object Panel1: TPanel
     Left = 8
@@ -93,7 +92,6 @@ object Form1: TForm1
       Top = 6
       Width = 38
       Caption = 'User : '
-      ParentColor = False
     end
     object Label3: TLabel
       Left = 206
@@ -101,14 +99,13 @@ object Form1: TForm1
       Top = 6
       Width = 41
       Caption = 'Pass : '
-      ParentColor = False
     end
   end
   object CheckBoxAuth: TCheckBox
     Left = 16
     Height = 19
     Top = 72
-    Width = 161
+    Width = 159
     Caption = 'Auth Mode (Need Restart)'
     TabOrder = 6
   end
@@ -117,7 +114,6 @@ object Form1: TForm1
     Height = 23
     Top = 8
     Width = 134
-    CharCase = ecNormal
     MaxLength = 15
     TabOrder = 1
     OnEditingDone = MaskSubEditingDone

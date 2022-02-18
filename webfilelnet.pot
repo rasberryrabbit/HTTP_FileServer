@@ -1,0 +1,91 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tform1.button1.caption
+msgid "Restart"
+msgstr ""
+
+#: tform1.caption
+msgid "Simple Http"
+msgstr ""
+
+#: tform1.checkboxauth.caption
+msgid "Auth Mode (Need Restart)"
+msgstr ""
+
+#: tform1.edit1.text
+msgid "80"
+msgstr ""
+
+#: tform1.editpass.text
+msgctxt "tform1.editpass.text"
+msgid "root"
+msgstr ""
+
+#: tform1.edituser.text
+msgctxt "tform1.edituser.text"
+msgid "root"
+msgstr ""
+
+#: tform1.groupbox1.caption
+msgid "Auth Info"
+msgstr ""
+
+#: tform1.label1.caption
+msgid "Port"
+msgstr ""
+
+#: tform1.label2.caption
+msgid "User : "
+msgstr ""
+
+#: tform1.label3.caption
+msgid "Pass : "
+msgstr ""
+
+#: tform1.masksub.text
+msgid "   .   .   .   "
+msgstr ""
+
+#: ufilehandler.rshtmlbodypfol
+#, object-pascal-format
+msgid "<html><body><p>Folder creation done.</p><br/><a href=\"/%s\">back</a></body></html>"
+msgstr ""
+
+#: ufilehandler.rshtmlbodypfolfail
+#, object-pascal-format
+msgid "<html><body><p>Folder creation fail.</p><br/><a href=\"/%s\">back</a></body></html>"
+msgstr ""
+
+#: ufilehandler.rshtmlbodypupl
+#, object-pascal-format
+msgid "<html><body><p>Uploaded</p><br/><a href=\"/%s\">back</a></body></html>"
+msgstr ""
+
+#: webfilelnet_main.rsaddresssd
+#, object-pascal-format
+msgid "* Address: %s:%d"
+msgstr ""
+
+#: webfilelnet_main.rsbasicauthori
+#, object-pascal-format
+msgid "Basic Authorization Mode! User: %s, Pass:%s"
+msgstr ""
+
+#: webfilelnet_main.rsdisconnected
+msgid "Disconnected."
+msgstr ""
+
+#: webfilelnet_main.rserrorinwriti
+msgid "Error in Writing "
+msgstr ""
+
+#: webfilelnet_main.rspeers
+#, object-pascal-format
+msgid "Peer %s"
+msgstr ""
+
+#: webfilelnet_main.rsudperror
+msgid "* UDP error"
+msgstr ""
+

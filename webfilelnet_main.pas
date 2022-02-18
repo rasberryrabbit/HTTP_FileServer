@@ -11,7 +11,6 @@ uses
 type
 
 
-
   { TForm1 }
 
   TForm1 = class(TForm)
@@ -52,9 +51,18 @@ var
 
 implementation
 
-uses lMimeTypes,lHTTPUtil, uFileHandler,loglistfpc, Sockets;
+uses lMimeTypes, lHTTPUtil, uFileHandler, loglistfpc, Sockets, DefaultTranslator;
 
 {$R *.lfm}
+
+resourcestring
+  rsUDPError = '* UDP error';
+  rsDisconnected = 'Disconnected.';
+  rsBasicAuthori = 'Basic Authorization Mode! User: %s, Pass:%s';
+  rsAddressSD = '* Address: %s:%d';
+  rsErrorInWriti = 'Error in Writing ';
+  rsPeerS = 'Peer %s';
+
 
 const
   DocRootIni='DocRoot.ini';
@@ -122,7 +130,7 @@ end;
 
 procedure TForm1.LHTTPServerComponent1Accept(aSocket: TLSocket);
 begin
-  loglist.AddLog(Format('Peer %s',[aSocket.PeerAddress]));
+  loglist.AddLog(Format(rsPeerS, [aSocket.PeerAddress]));
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -174,7 +182,7 @@ end;
 procedure TForm1.TimerUDPTimer(Sender: TObject);
 begin
   if -1=fpsendto(udpsock,@msgbuf[1],length(msgbuf),0,@udpaddr,sizeof(udpaddr)) then
-    loglist.AddLog('* UDP error');
+    loglist.AddLog(rsUDPError);
 end;
 
 function makebroadcastip(const s:string):string;
@@ -198,7 +206,7 @@ begin
     MyHttpServer.Disconnect(True);
     Sleep(100);
     FreeAndNil(MyHttpServer);
-    loglist.AddLog('Disconnected.');
+    loglist.AddLog(rsDisconnected);
   end;
 
   MyHttpServer:=TBigFileLHTTPServerComponent.Create(self);
@@ -241,7 +249,7 @@ begin
   MyHttpServer.Listen(MyHttpServer.Port);
 
   if c.AuthEnable then
-    loglist.AddLog(Format('Basic Authorization Mode! User: %s, Pass:%s',[c.AuthUser,c.AuthPass]));
+    loglist.AddLog(Format(rsBasicAuthori, [c.AuthUser, c.AuthPass]));
 
   //SaveDocPath;
   GetIPAddr(IPBuf,sizeof(IPBuf));
@@ -255,7 +263,7 @@ begin
   msgbuf:=IPBuf+':'+IntToStr(MyHttpServer.Port)+'|WEBFILELNET'#13#10;
   TimerUDP.Enabled:=True;
 
-  loglist.AddLog(Format('* Address: %s:%d',[IPBuf,MyHttpServer.Port]));
+  loglist.AddLog(Format(rsAddressSD, [IPBuf, MyHttpServer.Port]));
 end;
 
 procedure TForm1.SaveDocPath;
@@ -286,7 +294,7 @@ begin
       iFile.Free;
     end;
   except
-    loglist.AddLog('Error in Writing '+DocRootIni);
+    loglist.AddLog(rsErrorInWriti+DocRootIni);
   end;
 end;
 
@@ -345,7 +353,6 @@ begin
     DirectoryEdit1.Directory:=ExePath+'files';
   end;
 end;
-
 
 
 end.

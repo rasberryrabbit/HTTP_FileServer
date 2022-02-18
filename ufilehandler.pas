@@ -679,7 +679,7 @@ var
   end;
 
 begin
-  Result:=nil; // if you want process input data, must retuen TOutputItem and define Result.HandleInput
+  Result:=nil; // if you want process input data, must return TOutputItem and define Result.HandleInput
   uri:=UTF8Decode(HTTPDecode(ASocket.FRequestInfo.Argument));
   DoDirSeparators(uri);
   if ASocket.FRequestInfo.RequestType=hmHead then begin
@@ -829,6 +829,11 @@ begin
         end;
       end;
     end else
+    if DirectoryExists(DocRoot) then begin
+      // no root folder
+      ASocket.FResponseInfo.Status:=hsNotFound;
+      ResposeMsg;
+    end else
     begin
       // folder creation
       // check upload action url
@@ -886,49 +891,55 @@ begin
 
   // process file posting
   end else if ASocket.FRequestInfo.RequestType=hmPost then begin
-    contentlength:=StrToInt64Def(ASocket.Parameters[hpContentLength],0);
+    if DirectoryExists(DocRoot) then begin
+      contentlength:=StrToInt64Def(ASocket.Parameters[hpContentLength],0);
 
-    dummy:=TMemoryStream.Create;
-    Result:=TBigStreamOutput.Create(ASocket,dummy,True);
-    ASocket.FResponseInfo.ContentType:='text';
-    // get upload folder
-    tempURi:=pchar(UTF8Encode(uri));
-    i:=Pos(uploadaction,tempURi);
-    if i>0 then
-      urlstr:=Copy(tempURi,1,i-1)
-      else
-        urlstr:='';
+      dummy:=TMemoryStream.Create;
+      Result:=TBigStreamOutput.Create(ASocket,dummy,True);
+      ASocket.FResponseInfo.ContentType:='text';
+      // get upload folder
+      tempURi:=pchar(UTF8Encode(uri));
+      i:=Pos(uploadaction,tempURi);
+      if i>0 then
+        urlstr:=Copy(tempURi,1,i-1)
+        else
+          urlstr:='';
 
-    contenttype:=ASocket.Parameters[hpContentType];
-    if strlicomp(pchar(contenttype),'multipart/form-data',19)=0 then begin
-      // copy boundary value
-      i:=Pos('=',contenttype);
-      if i>0 then begin
-        Inc(i);
-        j:=Pos(#13#10,contenttype);
-        if j=0 then
-          j:=Length(contenttype)+1;
-        outmsg:=copy(contenttype,i,j-i);
-        TBigStreamOutput(Result).SetBoundary(outmsg);
-        TBigStreamOutput(Result).UploadFolder:=DocRoot+UTF8Decode(urlstr);
-        if contentlength>UploadLimit then begin
-          // disconnect when bigger
-          ASocket.Disconnect(True);
-          TBigStreamOutput(Result).LogError(Format('%d Upload Limit',[UploadLimit]));
-        end else
-          TBigStreamOutput(Result).OnHandleInput:=@TBigStreamOutput(Result).PostHandleInput;
+      contenttype:=ASocket.Parameters[hpContentType];
+      if strlicomp(pchar(contenttype),'multipart/form-data',19)=0 then begin
+        // copy boundary value
+        i:=Pos('=',contenttype);
+        if i>0 then begin
+          Inc(i);
+          j:=Pos(#13#10,contenttype);
+          if j=0 then
+            j:=Length(contenttype)+1;
+          outmsg:=copy(contenttype,i,j-i);
+          TBigStreamOutput(Result).SetBoundary(outmsg);
+          TBigStreamOutput(Result).UploadFolder:=DocRoot+UTF8Decode(urlstr);
+          if contentlength>UploadLimit then begin
+            // disconnect when bigger
+            ASocket.Disconnect(True);
+            TBigStreamOutput(Result).LogError(Format('%d Upload Limit',[UploadLimit]));
+          end else
+            TBigStreamOutput(Result).OnHandleInput:=@TBigStreamOutput(Result).PostHandleInput;
+        end;
       end;
-    end;
-    // response
-    if urlstr<>'' then
-      Delete(urlstr,Length(urlstr),1);
-    if urlstr<>'' then begin
-      urlstr:=HTTPEncode(StringReplace(urlstr,PathDelim,'/',[rfReplaceAll]));
-      urlstr:=StringReplace(urlstr,'%2F','/',[rfReplaceAll,rfIgnoreCase]);
-    end;
+      // response
+      if urlstr<>'' then
+        Delete(urlstr,Length(urlstr),1);
+      if urlstr<>'' then begin
+        urlstr:=HTTPEncode(StringReplace(urlstr,PathDelim,'/',[rfReplaceAll]));
+        urlstr:=StringReplace(urlstr,'%2F','/',[rfReplaceAll,rfIgnoreCase]);
+      end;
 
-    outmsg:=Format(rsHtmlBodyPUpl, [pchar(urlstr)]);
-    dummy.Write(outmsg[1],Length(outmsg));
+      outmsg:=Format(rsHtmlBodyPUpl, [pchar(urlstr)]);
+      dummy.Write(outmsg[1],Length(outmsg));
+    end else begin
+      // no root folder
+      ASocket.FResponseInfo.Status:=hsNotFound;
+      ResposeMsg;
+    end;
   end;
 end;
 

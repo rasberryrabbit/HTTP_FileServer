@@ -18,8 +18,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="61"/>
-        <CursorPos X="71" Y="54"/>
+        <TopLine Value="190"/>
+        <CursorPos X="27" Y="204"/>
         <UsageCount Value="193"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -395,7 +395,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="27">
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="webfilelnet_main.pas"/>
         <Caret Line="160" Column="10" TopLine="143"/>
@@ -506,7 +506,15 @@
       </Position>
       <Position>
         <Filename Value="webfilelnet_main.pas"/>
-        <Caret Line="54" Column="71" TopLine="29"/>
+        <Caret Line="54" Column="71" TopLine="61"/>
+      </Position>
+      <Position>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="56" Column="71" TopLine="56"/>
+      </Position>
+      <Position>
+        <Filename Value="webfilelnet_main.pas"/>
+        <Caret Line="122" Column="29" TopLine="118"/>
       </Position>
     </JumpHistory>
     <RunParams>

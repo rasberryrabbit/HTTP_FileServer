@@ -28,15 +28,18 @@ type
     Panel1: TPanel;
     TimerUDP: TTimer;
     TimerStart: TTimer;
+    TrayIcon1: TTrayIcon;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure FormWindowStateChange(Sender: TObject);
     procedure LHTTPServerComponent1Accept(aSocket: TLSocket);
     procedure LHTTPServerComponent1Error(const msg: string; aSocket: TLSocket);
     procedure MaskSubEditingDone(Sender: TObject);
     procedure TimerStartTimer(Sender: TObject);
     procedure TimerUDPTimer(Sender: TObject);
+    procedure TrayIcon1DblClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -112,6 +115,14 @@ begin
   TimerStart.Enabled:=True;
 end;
 
+procedure TForm1.FormWindowStateChange(Sender: TObject);
+begin
+  if Form1.WindowState=wsMinimized then begin
+    Form1.Hide;
+    TrayIcon1.Visible:=True;
+  end;
+end;
+
 procedure TForm1.MaskSubEditingDone(Sender: TObject);
 var
   s, buf, temp: string;
@@ -183,6 +194,14 @@ procedure TForm1.TimerUDPTimer(Sender: TObject);
 begin
   if -1=fpsendto(udpsock,@msgbuf[1],length(msgbuf),0,@udpaddr,sizeof(udpaddr)) then
     loglist.AddLog(rsUDPError);
+end;
+
+procedure TForm1.TrayIcon1DblClick(Sender: TObject);
+begin
+  Form1.WindowState:=wsNormal;
+  Form1.Show;
+  Form1.SetFocus;
+  TrayIcon1.Visible:=False;
 end;
 
 function makebroadcastip(const s:string):string;

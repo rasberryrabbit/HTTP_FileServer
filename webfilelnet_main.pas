@@ -87,32 +87,34 @@ procedure TForm1.FormShow(Sender: TObject);
 var
   b: TStringObject;
 begin
-  ExePath:=ExtractFilePath(ParamStr(0));
-  LoadDocPath;
+  if not TrayIcon1.Visible then begin
+    ExePath:=ExtractFilePath(ParamStr(0));
+    LoadDocPath;
 
-  MaskSub.Text:=nmask;
+    MaskSub.Text:=nmask;
 
-  // must exist for filehandler
-  if FileExists(ExtractFilePath(ParamStr(0))+'mime.types') then
-   InitMimeList(ExtractFilePath(ParamStr(0))+'mime.types')
-   else begin
-    InitMimeList('');
-    b:=TStringObject.Create;
-    b.Str:='text/html';
-    MimeList.AddObject('.html', b);
-    b:=TStringObject.Create;
-    b.Str:='text';
-    MimeList.AddObject('.txt', b);
-    b:=TStringObject.Create;
-    b.Str:='image';
-    MimeList.AddObject('.jpg', b);
-    b:=TStringObject.Create;
-    b.Str:='image';
-    MimeList.AddObject('.png', b);
-   end;
-  //
+    // must exist for filehandler
+    if FileExists(ExtractFilePath(ParamStr(0))+'mime.types') then
+     InitMimeList(ExtractFilePath(ParamStr(0))+'mime.types')
+     else begin
+      InitMimeList('');
+      b:=TStringObject.Create;
+      b.Str:='text/html';
+      MimeList.AddObject('.html', b);
+      b:=TStringObject.Create;
+      b.Str:='text';
+      MimeList.AddObject('.txt', b);
+      b:=TStringObject.Create;
+      b.Str:='image';
+      MimeList.AddObject('.jpg', b);
+      b:=TStringObject.Create;
+      b.Str:='image';
+      MimeList.AddObject('.png', b);
+     end;
+    //
 
-  TimerStart.Enabled:=True;
+    TimerStart.Enabled:=True;
+  end;
 end;
 
 procedure TForm1.FormWindowStateChange(Sender: TObject);

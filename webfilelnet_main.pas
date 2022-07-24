@@ -36,6 +36,7 @@ type
     procedure FormWindowStateChange(Sender: TObject);
     procedure LHTTPServerComponent1Accept(aSocket: TLSocket);
     procedure LHTTPServerComponent1Error(const msg: string; aSocket: TLSocket);
+    procedure LHTTPServerComponent1Access(AMessage: string);
     procedure MaskSubEditingDone(Sender: TObject);
     procedure TimerStartTimer(Sender: TObject);
     procedure TimerUDPTimer(Sender: TObject);
@@ -183,7 +184,12 @@ end;
 procedure TForm1.LHTTPServerComponent1Error(const msg: string; aSocket: TLSocket
   );
 begin
-  loglist.AddLog(AnsiToUtf8(msg));
+  loglist.AddLog(aSocket.PeerAddress+' '+msg);
+end;
+
+procedure TForm1.LHTTPServerComponent1Access(AMessage: string);
+begin
+  loglist.AddLog(AMessage);
 end;
 
 procedure TForm1.TimerStartTimer(Sender: TObject);
@@ -233,7 +239,8 @@ begin
   MyHttpServer:=TBigFileLHTTPServerComponent.Create(self);
   MyHttpServer.Name:='Server1';
   MyHttpServer.OnError:=@LHTTPServerComponent1Error;
-  MyHttpServer.OnAccept:=@LHTTPServerComponent1Accept;
+  //MyHttpServer.OnAccept:=@LHTTPServerComponent1Accept;
+  MyHttpServer.OnAccess:=@LHTTPServerComponent1Access;
 
   c:=TBigFileURIHandler.Create;
   c.Methods:=[hmHead, hmGet, hmPost];

@@ -185,6 +185,31 @@ procedure TForm1.LHTTPServerComponent1Error(const msg: string; aSocket: TLSocket
   );
 begin
   loglist.AddLog(aSocket.PeerAddress+' '+msg);
+  (*
+    lnet.pp
+    ...
+    implementation
+
+    var
+      _resutf8: boolean;
+    ...
+    function TLSocket.LogError(const msg: string; const ernum: Integer): Boolean;
+    begin
+      Result := False;
+      if Assigned(FOnError) then
+        if ernum > 0 then
+          FOnError(Self, msg + LStrError(ernum,_resutf8))
+        else
+          FOnError(Self, msg);
+    end;
+    ...
+    initialization
+      if DefaultSystemCodePage=CP_UTF8 then
+        _resutf8:=True
+        else
+          _resutf8:=False;
+    ...
+  *)
 end;
 
 procedure TForm1.LHTTPServerComponent1Access(AMessage: string);

@@ -8,7 +8,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, webfilelnet_main, lnetvisual, uFileHandler
+  Forms, webfilelnet_main, lnetvisual, uFileHandler, ExceptionLogger
   { you can add units after this };
 
 {$R *.res}

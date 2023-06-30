@@ -25,8 +25,7 @@ unit uFileHandler;
 interface
 
 uses
-  sysutils, Classes, lNetComponents, lhttp, lwebserver, TextKMP, Sockets,
-  LazUTF8Classes;
+  sysutils, Classes, lNetComponents, lhttp, lwebserver, TextKMP, Sockets;
 
 type
 
@@ -34,7 +33,7 @@ type
 
   TBigFileOutput=class(TBufferOutput)
     private
-      FFileStream:TFileStreamUTF8;
+      FFileStream:TFileStream;
       FStartPos:Int64;
       FEndPos:Int64;
 
@@ -72,7 +71,7 @@ type
       FindText:TDWKMPScan;
       IncNext:Integer;
       UploadFolder:UnicodeString;
-      OutFile:TFileStreamUTF8;
+      OutFile:TFileStream;
       InHeader:Boolean;
       bHeader:string;
       bFilename,oFilename,tFilename:UnicodeString;
@@ -239,7 +238,7 @@ function TBigFileOutput.Open(const AFilename: unicodestring): Boolean;
 begin
  Result:=False;
  try
-   FFileStream:=TFileStreamUTF8.Create(UTF8Encode(AFilename),fmOpenRead or fmShareDenyWrite);
+   FFileStream:=TFileStream.Create(UTF8Encode(AFilename),fmOpenRead or fmShareDenyWrite);
    if FStartPos>0 then
      FFileStream.Position:=FStartPos;
    Result:=True;
@@ -380,7 +379,7 @@ begin
        if bFilename<>'' then begin
          oFilename:=bFilename;
          tFilename:=MakeTempFilename(oFilename);
-         OutFile:=TFileStreamUTF8.Create(UTF8Encode(tFilename),fmCreate or fmOpenWrite or fmShareDenyWrite);
+         OutFile:=TFileStream.Create(UTF8Encode(tFilename),fmCreate or fmOpenWrite or fmShareDenyWrite);
        end;
      except
        if OutFile<>nil then
@@ -432,7 +431,7 @@ begin
         if bFilename<>'' then begin
           oFilename:=bFilename;
           tFilename:=MakeTempFilename(oFilename);
-          OutFile:=TFileStreamUTF8.Create(UTF8Encode(tFilename),fmCreate or fmOpenWrite or fmShareDenyWrite);
+          OutFile:=TFileStream.Create(UTF8Encode(tFilename),fmCreate or fmOpenWrite or fmShareDenyWrite);
         end;
       except
         if OutFile<>nil then

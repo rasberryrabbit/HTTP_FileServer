@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, EditBtn, MaskEdit, lNetComponents, lNet, lhttp, lwebserver;
+  ExtCtrls, EditBtn, MaskEdit, lNetComponents, lNet, lhttp, lwebserver,
+  UExceptionLogger;
 
 type
 
@@ -159,6 +160,7 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+  exceptionLogger.LogFileName:='bugreport.txt';
   loglist:=TLogListFPC.Create(Self);
   loglist.Name:='loglist1';
   loglist.Parent:=Panel1;

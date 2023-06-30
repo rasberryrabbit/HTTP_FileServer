@@ -3,15 +3,15 @@ msgstr "Content-Type: text/plain; charset=UTF-8"
 
 #: tform1.button1.caption
 msgid "Restart"
-msgstr "재시작"
+msgstr ""
 
 #: tform1.caption
 msgid "Simple Http"
-msgstr "간단한 HTTP"
+msgstr ""
 
 #: tform1.checkboxauth.caption
 msgid "Auth Mode (Need Restart)"
-msgstr "인증모드 (재시작 필요)"
+msgstr ""
 
 #: tform1.edit1.text
 msgid "80"
@@ -29,19 +29,19 @@ msgstr ""
 
 #: tform1.groupbox1.caption
 msgid "Auth Info"
-msgstr "인증정보"
+msgstr ""
 
 #: tform1.label1.caption
 msgid "Port"
-msgstr "포트"
+msgstr ""
 
 #: tform1.label2.caption
 msgid "User : "
-msgstr "사용자 : "
+msgstr ""
 
 #: tform1.label3.caption
 msgid "Pass : "
-msgstr "암호 : "
+msgstr ""
 
 #: tform1.masksub.text
 msgid "   .   .   .   "
